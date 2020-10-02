@@ -21,31 +21,6 @@ export default {
       width: 0,
     };
   },
-  /*  watch: {
-    win: function FractiOnSize() {
-      const win = document.documentElement.clientWidth;
-      console.log(this.win);
-      if (win < 850 && win > 700) {
-        this.itemSize = 0.81;
-      }
-
-      if (win < 700 && win > 600) {
-        this.itemSize = 0.61;
-      }
-
-      if (win < 600 && win > 500) {
-        this.itemSize = 0.65;
-      }
-
-      if (win < 500 && win > 390) {
-        this.itemSize = 0.5;
-      }
-
-      if (win < 390 && win > 260) {
-        this.itemSize = 0.36;
-      }
-    },
-  }, */
   methods: {
     FractiOnSize() {
       const win = document.documentElement.clientWidth;
@@ -69,16 +44,19 @@ export default {
       if (win < 390 && win > 260) {
         this.itemSize = 0.36;
       }
-      const barWidth = this.$refs.bar.clientWidth - 30;
-      const paddingInPercent = this.forecast / this.sumOfRanges;
-      const padding = barWidth * paddingInPercent * this.itemSize;
+      try {
+        const barWidth = this.$refs.bar.clientWidth - 30;
+        const paddingInPercent = this.forecast / this.sumOfRanges;
+        const padding = barWidth * paddingInPercent * this.itemSize;
 
-      const { arrow } = this.$refs;
-      const { dotted } = this.$refs;
+        const { arrow } = this.$refs;
+        const { dotted } = this.$refs;
 
-      arrow.style.paddingLeft = `${padding}px`;
-      dotted.style.width = `${padding}px`;
-      console.log(this.itemSize);
+        arrow.style.paddingLeft = `${padding}px`;
+        dotted.style.width = `${padding}px`;
+      } catch (err) {
+        console.log('!');
+      }
     },
 
     lineWidth(range) {
